@@ -15,9 +15,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Changed Files Exporter
+      - name: Set jenkins status to pending
         continue-on-error: true
         run: |
-          echo "GITHUB_REF_NAME: ${GITHUB_REF_NAME}, GITHUB_ACTOR: ${GITHUB_ACTOR}, GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, GITHUB_SHA: ${GITHUB_SHA}"
-          curl -u ${GITHUB_ACTOR}:${{ github.token }} "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/issues/1/labels" -H "Accept: application/vnd.github.v3+json" -X DELETE -d "{\"labels\": [\"bug\"]}"
-#          curl -u ${GITHUB_ACTOR}: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 "https://api.GitHub.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -H "Content-Type: application/json" -X POST -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_ur\": \"https://2886795321-8080-host11nc.environments.katacoda.com\"}"
+          curl -u ${GITHUB_ACTOR}:${{ github.token }} "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -H "Content-Type: application/json" -X POST -d "{\"state\": \"pending\",\"context\": \"Jenkins/test-branch\", \"description\": \"needs to run k8s \ the run is not finished yet\", \"target_url\": \"http://jenkins-development.nextinsurance.io/view/Single%20Service%20Deployment\"}"
