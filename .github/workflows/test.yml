@@ -1,0 +1,22 @@
+name: continuous-integration/jenkins
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    name: Jenkins
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        continue-on-error: true
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Changed Files Exporter
+        continue-on-error: true
+        run: |
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}, GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}, GITHUB_SHA: ${GITHUB_SHA}"
+          curl -u ${GITHUB_ACTOR}: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 "https://api.GitHub.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -H "Content-Type: application/json" -X POST -d "{\"state\": \"success\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_ur\": \"https://2886795321-8080-host11nc.environments.katacoda.com\"}"
