@@ -18,4 +18,4 @@ jobs:
       - name: Set jenkins status to pending
         continue-on-error: true
         run: |
-          curl -u ${GITHUB_ACTOR}:${{ github.token }} "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -H "Content-Type: application/json" -X POST -d "{\"state\": \"pending\",\"context\": \"Jenkins/test-branch\", \"description\": \"needs to run k8s \\ the run is not finished yet\", \"target_url\": \"http://jenkins-development.nextinsurance.io/view/Single%20Service%20Deployment\"}"
+          curl -u ${GITHUB_ACTOR}:${{ github.token }} "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -H "Content-Type: application/json" -X POST -d "{\"state\": \"pending\",\"context\": \"Jenkins/test-branch\", \"description\": \"needs to run k8s or k8s is not finished yet\", \"target_url\": \"http://jenkins-development.nextinsurance.io/view/Single%20Service%20Deployment\"}"
