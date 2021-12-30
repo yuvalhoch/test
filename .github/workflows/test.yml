@@ -1,4 +1,4 @@
-name: Jenkins
+name: continuous-integration/jenkins
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    name: test-branch
+    name: Jenkins
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
